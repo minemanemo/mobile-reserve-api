@@ -24,11 +24,11 @@ public class CouponServiceHandler implements CouponService {
                 .boxed()
                 .map(String::valueOf)
                 .forEach(COMBINATION_OF_LETTERS::add);
-        IntStream.rangeClosed(0, 26)
+        IntStream.rangeClosed(0, 25)
                 .mapToObj(i -> ((char) (i + 'a')))
                 .map(String::valueOf)
                 .forEach(COMBINATION_OF_LETTERS::add);
-        IntStream.rangeClosed(0, 26)
+        IntStream.rangeClosed(0, 25)
                 .mapToObj(i -> ((char) (i + 'A')))
                 .map(String::valueOf)
                 .forEach(COMBINATION_OF_LETTERS::add);
