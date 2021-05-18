@@ -35,6 +35,19 @@ public class CouponServiceTest {
     }
 
     @Test
+    void 쿠폰_조회_테스트() {
+        // given
+        String phoneNumber = "01098765432";
+
+        // when
+        couponService.issueCoupon(phoneNumber);
+        Coupon coupon = couponService.getCoupon(phoneNumber);
+
+        // then
+        Assertions.assertThat(coupon.getPhoneNumber()).isEqualTo(phoneNumber);
+    }
+
+    @Test
     void 쿠폰_리스트_조회_테스트() {
         // given
         List<Coupon> prev = couponService.getCoupons();
