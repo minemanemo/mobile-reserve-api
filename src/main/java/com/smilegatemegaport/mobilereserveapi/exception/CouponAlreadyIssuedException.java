@@ -23,7 +23,10 @@ public class CouponAlreadyIssuedException extends CouponException {
     public CouponResponse toCouponResponse() {
         return CouponResponse.builder()
                 .message("Coupon Already Issued...")
-                .data(coupon)
+                .sequence(coupon.getSequence())
+                .couponNumber(coupon.getCouponNumber())
+                .phoneNumber(coupon.getPhoneNumber())
+                .createDate(coupon.getCreateDate())
                 .build();
     }
 }

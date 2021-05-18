@@ -18,7 +18,6 @@ public class CouponNotFoundException extends CouponException {
     public CouponResponse toCouponResponse() {
         return CouponResponse.builder()
                 .message("Coupon Not Found...")
-                .data(null)
                 .build();
     }
 }

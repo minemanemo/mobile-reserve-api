@@ -4,9 +4,14 @@ import com.smilegatemegaport.mobilereserveapi.domain.entity.Coupon;
 import lombok.Builder;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Data
 @Builder
 public class CouponResponse {
-    String message;
-    Coupon data;
+    private String message;
+    private Long sequence;
+    private String phoneNumber;
+    private String couponNumber;
+    private LocalDateTime createDate;
 }
