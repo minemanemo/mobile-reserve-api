@@ -3,8 +3,6 @@ package com.smilegatemegaport.mobilereserveapi.service;
 import com.smilegatemegaport.mobilereserveapi.domain.CouponRepository;
 import com.smilegatemegaport.mobilereserveapi.domain.entity.Coupon;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -53,7 +51,7 @@ public class CouponServiceHandler implements CouponService {
     }
 
     @Override
-    public Page<Coupon> getCoupons(Pageable pageable) {
-        return null;
+    public List<Coupon> getCoupons() {
+        return couponRepository.findAll();
     }
 }
