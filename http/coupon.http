@@ -1,0 +1,8 @@
+
+# 쿠폰 생성 API Client
+POST http://localhost:8080/api/v1/coupon
+Content-Type: application/json
+
+{
+  "phoneNumber": "01099991111"
+}
