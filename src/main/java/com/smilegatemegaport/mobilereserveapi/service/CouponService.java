@@ -7,5 +7,7 @@ import java.util.List;
 public interface CouponService {
     Coupon issueCoupon(String phoneNumber);
 
+    Coupon getCoupon(String phoneNumber);
+
     List<Coupon> getCoupons();
 }

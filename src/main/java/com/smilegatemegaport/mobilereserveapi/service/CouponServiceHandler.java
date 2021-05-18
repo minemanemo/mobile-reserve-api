@@ -44,6 +44,11 @@ public class CouponServiceHandler implements CouponService {
         return couponRepository.save(coupon);
     }
 
+    @Override
+    public Coupon getCoupon(String phoneNumber) {
+        return couponRepository.findByPhoneNumber(phoneNumber);
+    }
+
     private String generateCouponNumber() {
         Collections.shuffle(COMBINATION_OF_LETTERS);
         String couponNumber = String.join("", COMBINATION_OF_LETTERS.subList(0, 12));
