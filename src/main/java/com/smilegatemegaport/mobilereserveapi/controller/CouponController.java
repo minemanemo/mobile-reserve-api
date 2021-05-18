@@ -3,6 +3,7 @@ package com.smilegatemegaport.mobilereserveapi.controller;
 import com.smilegatemegaport.mobilereserveapi.domain.dto.CouponRequest;
 import com.smilegatemegaport.mobilereserveapi.domain.dto.CouponResponse;
 import com.smilegatemegaport.mobilereserveapi.domain.entity.Coupon;
+import com.smilegatemegaport.mobilereserveapi.exception.CouponException;
 import com.smilegatemegaport.mobilereserveapi.service.CouponService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -35,6 +36,12 @@ public class CouponController {
     @ResponseStatus(HttpStatus.OK)
     public List<Coupon> getCoupons() {
         return couponService.getCoupons();
+    }
+
+
+    @ExceptionHandler
+    public ResponseEntity<CouponResponse> handleException(CouponException e) {
+        return ResponseEntity.status(e.getStatusCode()).body(e.toCouponResponse());
     }
 
 }

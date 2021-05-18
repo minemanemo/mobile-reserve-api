@@ -2,6 +2,8 @@ package com.smilegatemegaport.mobilereserveapi.service;
 
 import com.smilegatemegaport.mobilereserveapi.domain.CouponRepository;
 import com.smilegatemegaport.mobilereserveapi.domain.entity.Coupon;
+import com.smilegatemegaport.mobilereserveapi.exception.CouponAlreadyIssuedException;
+import com.smilegatemegaport.mobilereserveapi.exception.CouponNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +39,7 @@ public class CouponServiceHandler implements CouponService {
     @Override
     public Coupon issueCoupon(String phoneNumber) {
         Coupon coupon = couponRepository.findByPhoneNumber(phoneNumber);
+        if (coupon != null) throw CouponAlreadyIssuedException.thrown(coupon);
         coupon = Coupon.builder()
                 .couponNumber(generateCouponNumber())
                 .phoneNumber(phoneNumber)
@@ -46,7 +49,9 @@ public class CouponServiceHandler implements CouponService {
 
     @Override
     public Coupon getCoupon(String phoneNumber) {
-        return couponRepository.findByPhoneNumber(phoneNumber);
+        Coupon coupon = couponRepository.findByPhoneNumber(phoneNumber);
+        if (coupon == null) throw CouponNotFoundException.thrown();
+        return coupon;
     }
 
     private String generateCouponNumber() {
