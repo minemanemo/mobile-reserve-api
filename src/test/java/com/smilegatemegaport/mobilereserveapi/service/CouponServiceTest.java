@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @SpringBootTest
 @Transactional
 public class CouponServiceTest {
@@ -27,8 +29,6 @@ public class CouponServiceTest {
         // when
         Coupon coupon = couponService.issueCoupon(phoneNumber);
 
-        System.out.println(coupon.getCouponNumber() + " " + coupon.getCreateDate() + " " + coupon.getPhoneNumber() + " " + coupon.getSequence());
-
         // then
         Assertions.assertThat(coupon.getCouponNumber().length()).isEqualTo(14);
         Assertions.assertThat(coupon.getPhoneNumber()).isEqualTo(phoneNumber);
@@ -36,7 +36,16 @@ public class CouponServiceTest {
 
     @Test
     void 쿠폰_리스트_조회_테스트() {
+        // given
+        List<Coupon> prev = couponService.getCoupons();
+        String phoneNumber = "01011111111";
 
+        // when
+        couponService.issueCoupon(phoneNumber);
+        List<Coupon> next = couponService.getCoupons();
+
+        // then
+        Assertions.assertThat(prev.size() + 1).isEqualTo(next.size());
     }
 
 }
